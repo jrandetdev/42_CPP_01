@@ -9,6 +9,8 @@ int main(int argc, char **argv)
 	std::string name = "Charlie";
 
 	Zombie *ptr = zombieHorde(N, name);
+	if (!ptr)
+		return (1);
 
 	for (int i = 0; i < N ; ++i)
 	{
