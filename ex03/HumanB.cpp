@@ -10,3 +10,13 @@ HumanB::~HumanB()
 {
 	std::cout << "HumanB default constructor called" << std::endl;
 }
+
+void		HumanB::setWeapon(Weapon desiredWeapon)
+{
+	this->hisWeapon = desiredWeapon;
+}
+
+void	HumanB::attack()
+{
+	std::cout << name << " attacks with their " << this->hisWeapon.getType() << std::endl;
+}

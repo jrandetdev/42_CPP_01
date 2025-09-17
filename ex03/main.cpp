@@ -22,5 +22,15 @@ int main(int argc, char **argv)
 
 	Weapon	club = Weapon("crude spike club");
 	std::cout << "the club type is a " << club.getType() << std::endl;
+	
+	HumanA bob("Bob", club);
+	bob.attack();
+
+	std::cout << "\nsettype called for some other type of club" << std::endl;
+	club.setType("some other type of club");
+	std::cout << "the club type is now a " << club.getType() << std::endl;
+	
+	bob.attack();
+
 	return (0);
 }
