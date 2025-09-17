@@ -1,11 +1,12 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(/* args */)
+HumanA::HumanA(std::string desiredName, Weapon desiredWeapon)
 {
-
+	this->name = desiredName;
+	Weapon(desiredWeapon);
 }
 
 HumanA::~HumanA()
 {
-	
+
 }
