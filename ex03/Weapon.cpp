@@ -13,7 +13,7 @@ Weapon::Weapon(std::string desiredWeapon)
 
 Weapon::~Weapon()
 {
-
+	std::cout << "Weapon default destructor called" << std::endl;
 }
 
 void	Weapon::setType(std::string s)

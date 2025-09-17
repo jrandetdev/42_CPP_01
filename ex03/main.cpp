@@ -14,23 +14,33 @@
 //references are usefyk in a class's public interface
 //references typically appear on the skin of a class and pointers inside.
 
-
 int main(int argc, char **argv)
 {
 	(void)argc;
 	(void)argv;
-
-	Weapon	club = Weapon("crude spike club");
-	std::cout << "the club type is a " << club.getType() << std::endl;
 	
-	HumanA bob("Bob", club);
-	bob.attack();
+	{
+		Weapon	club = Weapon("crude spike club");
+		
+		HumanA bob("Bob", club);
+		bob.attack();
 
-	std::cout << "\nsettype called for some other type of club" << std::endl;
-	club.setType("some other type of club");
-	std::cout << "the club type is now a " << club.getType() << std::endl;
-	
-	bob.attack();
+		std::cout << "\nsettype called for some other type of club" << std::endl;
+		club.setType("some other type of club");
+		bob.attack();
+	}
+	std::cout << '\n';
+	{
+		Weapon club = Weapon("crude spiked club");
+
+		HumanB	jim("Jim");
+		jim.setWeapon(club);
+		jim.attack();
+
+		std::cout << '\n';
+		club.setType("Some other type of club");
+		jim.attack();
+	}
 
 	return (0);
 }

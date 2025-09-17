@@ -17,5 +17,4 @@ class Weapon
 		std::string type;
 };
 
-
 #endif

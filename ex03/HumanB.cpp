@@ -8,15 +8,15 @@ HumanB::HumanB(std::string desiredName)
 
 HumanB::~HumanB()
 {
-	std::cout << "HumanB default constructor called" << std::endl;
+	std::cout << "HumanB default destructor called" << std::endl;
 }
 
-void		HumanB::setWeapon(Weapon desiredWeapon)
+void		HumanB::setWeapon(Weapon &desiredWeapon)
 {
-	this->hisWeapon = desiredWeapon;
+	this->hisWeapon = &desiredWeapon;
 }
 
 void	HumanB::attack()
 {
-	std::cout << name << " attacks with their " << this->hisWeapon.getType() << std::endl;
+	std::cout << name << " attacks with their " << this->hisWeapon->getType() << std::endl;
 }
