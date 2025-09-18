@@ -1,9 +1,8 @@
 #include "HumanA.hpp"
 
-HumanA::HumanA(std::string desiredName, Weapon &desiredWeapon)
+HumanA::HumanA(std::string desiredName, Weapon &desiredWeapon) : hisWeapon(desiredWeapon)
 {
 	this->name = desiredName;
-	hisWeapon = &desiredWeapon;
 	std::cout << "HumanA constructor called" << std::endl;
 }
 

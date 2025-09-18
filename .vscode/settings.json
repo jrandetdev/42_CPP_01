@@ -45,6 +45,10 @@
 		"ranges": "cpp",
 		"span": "cpp",
 		"stdexcept": "cpp",
-		"streambuf": "cpp"
+		"streambuf": "cpp",
+		"ctime": "cpp",
+		"fstream": "cpp",
+		"iomanip": "cpp",
+		"sstream": "cpp"
 	}
 }

@@ -9,7 +9,7 @@ class HumanA
 		HumanA(std::string desiredName, Weapon &desiredWeapon);
 		~HumanA();
 		std::string	name;
-		Weapon		*hisWeapon;
+		Weapon		&hisWeapon;
 		void	attack();
 	private:
 		
