@@ -4,45 +4,6 @@
 
 static	std::string	get_replacement_filename(char *string, std::string extension);
 
-// std::string	check_and_replace_strings_in_line(std::string &string_to_modify, std::string const &string_to_replace, std::string const &replace_by)
-// {
-// 	size_t	pos = string_to_modify.find(string_to_replace);
-// 	if (pos == string_to_modify.npos)
-// 		return (string_to_modify);
-// 	while (pos != string_to_modify.npos)
-// 	{
-// 		string_to_modify.erase(pos, string_to_replace.size());
-// 		string_to_modify.insert(pos, replace_by);
-// 		pos = string_to_modify.find(string_to_replace, pos + replace_by.size());
-// 	}
-// 	return (string_to_modify);
-// }
-
-// bool	read_from_file(char **argv, std::string replacement_filename)
-// {
-// 	std::string	original_filename = argv[1];
-// 	std::string const string_to_replace = argv[2];
-// 	std::string const replace_by = argv[3];
-	
-// 	std::ifstream	original_file(original_filename, std::ios::in);
-// 	std::string		mytempstring;
-// 	if (original_file.is_open()){
-// 		std::ofstream 	replacement_file(replacement_filename.c_str(), std::ios::out);
-// 		while (std::getline (original_file, mytempstring))
-// 		{
-// 			mytempstring = check_and_replace_strings_in_line(mytempstring, string_to_replace, replace_by);
-// 			replacement_file << mytempstring;
-// 			if (original_file.peek() != EOF)
-// 				replacement_file << '\n';
-// 		}
-// 	}
-// 	else {
-// 		std::cout << "Error: Couldn't open file\n";
-// 		return (false);
-// 	}
-// 	return (true);
-// }
-
 void	ft_replace(std::string &original_filename, std::string &replacement_filename, std::string &search, std::string &replacement)
 {
 	std::ifstream	original_file(original_filename);
