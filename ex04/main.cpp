@@ -4,51 +4,43 @@
 
 static	std::string	get_replacement_filename(char *string, std::string extension);
 
-/*
- *	Replaces all the occurences if 'search' with 'replacement' in a file. 
- *	Uses character by character reading to handle partial matches correctly.
- *	
- *	Algorithm: Track position in search string. On mismatch after a partial match, output the 
- * 	matched portion to the output file and reset the tracker. On complete match, output the replacement.
-*/
-void	ft_replace(const std::string &original_filename,
-			const std::string &output_filename,
-			const std::string &search,
-			const std::string &replacement)
+std::string	ft_replace(std::string &str, const std::string &search, const std::string &replace)
 {
-	std::ifstream	original_file(original_filename);
-	std::ofstream	replace_file(output_filename.c_str());
-
-	char	c;
-	size_t	search_position = 0;
-	while (original_file.get(c))
+	size_t	pos = str.find(search);
+	if (pos == str.npos)
+		return str;
+	while (pos != str.npos)
 	{
-		//Partial match failed - outut what we matched so far
-		if (c != search[search_position] && search_position > 0)
+		str.erase(pos, search.size());
+		str.insert(pos, replace);
+		pos = str.find(search, pos + replace.size());
+	}
+	return (str);
+}
+
+
+void	read_and_treat_file(const std::string &original_filename,
+				const std::string &output_filename,
+				const std::string &search,
+				const std::string &replace)
+{
+	std::ifstream	original_file(original_filename.c_str());
+	std::ofstream	replace_file(output_filename.c_str());
+	std::string		mystring;
+	
+	if (original_file.is_open()){
+		while (getline(original_file, mystring))
 		{
-			replace_file << search.substr(0, search_position);
-			search_position = 0;
-		}
-		//Character matched to 'search', increment the tracker
-		if (c == search[search_position])
-		{
-			search_position += 1;
-			// end of string using the tracker - found a complete search: we can replace
-			if (search[search_position] == '\0')
-			{
-				replace_file << replacement;
-				search_position = 0;
-			}
-		}
-		//No partial match and no matching character, we output the character we read.
-		else
-		{
-			replace_file << c;
+			mystring = ft_replace(mystring, search, replace);
+			replace_file << mystring;
+			if (original_file.peek() != EOF)
+				replace_file << '\n';
 		}
 	}
-	//Partial match found but EOF reached before a complete match - outputs what was found to output file.
-	if (search_position)
-		replace_file << search.substr(0, search_position);
+	else
+	{
+		std::cout << "Error: Could not open file." << '\n';
+	}
 }
 
 int main(int argc, char **argv)
@@ -60,7 +52,7 @@ int main(int argc, char **argv)
 	std::string	search = argv[2];
 	std::string replacement = argv[3];
 
-	ft_replace(original_filename, output_filename, search, replacement);
+	read_and_treat_file(original_filename, output_filename, search, replacement);
 	return (0);
 }
 
