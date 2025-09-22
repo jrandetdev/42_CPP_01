@@ -18,7 +18,6 @@ std::string	ft_replace(std::string &str, const std::string &search, const std::s
 	return (str);
 }
 
-
 void	read_and_treat_file(const std::string &original_filename,
 				const std::string &output_filename,
 				const std::string &search,

@@ -1,5 +1,6 @@
 #include "HumanA.hpp"
 #include "HumanB.hpp"
+#include "Weapon.hpp"
 
 // a pointer contains the memory address of a variable and can be reassigned
 // a reference, on the other hand, is the address of a variable but is an allias.
@@ -19,13 +20,14 @@ int main(int argc, char **argv)
 	(void)argc;
 	(void)argv;
 	
+	//two scopes in these functions, meaning the constructor and destructor are called for the weapon
 	{
 		Weapon	club = Weapon("crude spike club");
 		
-		HumanA bob("Bob", club);
+		//setweapon is not called here. HumanA takes a reference, meaning when the club changes
+		// bob's weapon also changes because he has an allias to the club variable. 
+		HumanA bob("Bob", club); 
 		bob.attack();
-
-		std::cout << "\nsettype called for some other type of club" << std::endl;
 		club.setType("some other type of club");
 		bob.attack();
 	}
@@ -37,6 +39,8 @@ int main(int argc, char **argv)
 		jim.setWeapon(club);
 		jim.attack();
 
+		//HumanB has a pointer to the weapon, meaning that when it is reassigned
+		//in the club's setType function, it also changes for the HumanB's weapon
 		std::cout << '\n';
 		club.setType("Some other type of club");
 		jim.attack();

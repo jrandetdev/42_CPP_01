@@ -8,32 +8,33 @@ int main(int argc, char **argv)
 	int N = 3;
 	std::string name = "Charlie";
 
-	Zombie *ptr = zombieHorde(N, name);
-	if (!ptr)
+	Zombie *horde = zombieHorde(N, name);
+	if (!horde)
 		return (1);
 
 	for (int i = 0; i < N ; ++i)
 	{
-		ptr[i].announce();
+		horde[i].announce();
 	}
 
 	for (int i = N - 1; i >= 0; --i)
-		ptr[i].~Zombie();
-	operator delete[] (ptr);
+		horde[i].~Zombie();
+	operator delete[] (horde);
 
+	//second test
 	std::cout << '\n' ;
 	name = "ALICE";
 	N = 2;
-	ptr = zombieHorde(N, name);
+	horde = zombieHorde(N, name);
 
 	for (int i = 0; i < N ; ++i)
 	{
-		ptr[i].announce();
+		horde[i].announce();
 	}
 
 	for (int i = N - 1; i >= 0; --i)
-		ptr[i].~Zombie();
-	operator delete[] (ptr);
+		horde[i].~Zombie();
+	operator delete[] (horde);
 
 	return (0);
 }

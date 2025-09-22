@@ -1,5 +1,6 @@
 #include <iostream>
 
+//Goal of this program is to understand references by printing the adress of a pointer and a reference
 int main(int argc, char **argv)
 {
 	(void)argc;
