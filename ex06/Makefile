@@ -7,7 +7,7 @@ LDINCLUDE	=	-I$(DIR_SRC)
 LDFLAGS		=	
 LDLIBS		=	
 
-SRCS		=	
+SRCS		=	main.cpp Harl.cpp
 SRCS_NAME	=	$(basename $(SRCS))
 OBJS		=	$(addsuffix .o, $(addprefix $(DIR_BUILD)/, $(SRCS_NAME)))
 
