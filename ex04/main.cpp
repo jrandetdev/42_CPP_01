@@ -2,8 +2,6 @@
 #include <string>
 #include <fstream>
 
-static	std::string	get_replacement_filename(char *string, std::string extension);
-
 std::string	ft_replace(std::string &str, const std::string &search, const std::string &replace)
 {
 	size_t	pos = str.find(search);
@@ -42,31 +40,33 @@ void	read_and_treat_file(const std::string &original_filename,
 	}
 }
 
+bool	check_args(int argc, char **argv)
+{
+	for (int i = 0; i < argc; ++i)
+	{
+		if (std::string(argv[i]).empty())
+			return (false);
+	}
+	return (true);
+}
+
 int main(int argc, char **argv)
 {
 	if (argc != 4)
+	{
 		std::cout << "Error: Invalid program input, please give: <filename> <string to find> <replacement string>" << std::endl;
+		return (1);
+	}
+	if (!check_args(argc, argv))
+	{
+		std::cout << "Error: search and replace strings cannot be empty." << std::endl;
+		return (1);
+	}
 	std::string	original_filename = argv[1];
-	std::string	output_filename = get_replacement_filename(argv[1], ".replace");
-	std::string	search = argv[2];
+	std::string	output_filename = original_filename + ".replace";
+	std::string search = argv[2];
 	std::string replacement = argv[3];
 
 	read_and_treat_file(original_filename, output_filename, search, replacement);
 	return (0);
-}
-
-/*
-*	Looks if the filename contains an extension, and replaces it with .replace if found.
-*	If no extension, it appends .replace (extenssion) directly.
-*/
-static	std::string	get_replacement_filename(char *string, std::string extension)
-{
-	std::string original_filename = string;
-	size_t	last_dot_position = original_filename.find_last_of('.');
-
-	if (last_dot_position == original_filename.npos)
-		return (original_filename + extension);
-		
-	std::string replace_filename = original_filename.substr(0, last_dot_position) + extension;
-	return (replace_filename);
 }

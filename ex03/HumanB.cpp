@@ -4,6 +4,7 @@
 HumanB::HumanB(std::string desiredName)
 {
 	this->name = desiredName;
+	this->hisWeapon = NULL;
 	std::cout << "HumanB constructor called and is now called " << this->name << std::endl;
 }
 
@@ -20,5 +21,10 @@ void		HumanB::setWeapon(Weapon &desiredWeapon)
 
 void	HumanB::attack()
 {
+	if (!hisWeapon)
+	{
+		std::cout << name << " : HELP I dont have a WeApON!!!" << std::endl;
+		return ;
+	}
 	std::cout << name << " attacks with their " << this->hisWeapon->getType() << std::endl;
 }
