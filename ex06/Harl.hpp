@@ -13,13 +13,7 @@ enum
 	INFO,
 	WARNING,
 	ERROR
-} ;
-
-typedef struct	s_func_ptr
-{
-	std::string	level;
-	void (Harl::*f) (void);
-}	t_func_ptr;
+};
 
 class Harl
 {
@@ -27,15 +21,11 @@ class Harl
 		Harl();
 		~Harl();
 		void	complain(std::string level);
-		void	filter(std::string level);
 	private:
-		t_func_ptr	function_ptr_array[4];
 		void		debug(void);
 		void		info(void);
 		void		warning(void);
 		void		error(void);
-}	;
-
-
+};
 
 #endif

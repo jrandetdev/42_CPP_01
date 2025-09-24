@@ -8,7 +8,7 @@ Weapon::Weapon()
 Weapon::Weapon(std::string desiredWeapon)
 {
 	setType(desiredWeapon);
-	std::cout << "Weapon type assigned is " << this->type << std::endl;
+	std::cout << "Weapon  constructor called and type assigned is " << this->type << std::endl;
 }
 
 Weapon::~Weapon()

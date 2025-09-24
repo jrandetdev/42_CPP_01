@@ -2,19 +2,19 @@
 
 //Name is private, and we are using two different methods to access the pointer.
 
-int main(int argc, char **argv)
+int main()
 {
-	(void)argc;
-	(void)argv;
 	Zombie	*zombiePtr;
 
-	std::cout << "Zombie allocated on the stack: " << std::endl;
 	randomChump("Charlie");
+	randomChump("Leonard");
+	
 
-	std::cout << "\nZombie allocated on the heap: " << std::endl;
+	std::cout << "\nHeap used, pointer is returned and we can access private member." << '\n';
 	zombiePtr = newZombie("Bob");
 	zombiePtr->announce();
 	delete(zombiePtr);
+	zombiePtr = NULL;
 
 	return (0);
 }

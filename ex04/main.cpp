@@ -23,7 +23,7 @@ void	read_and_treat_file(const std::string &original_filename,
 {
 	std::ifstream	original_file(original_filename.c_str());
 	std::ofstream	replace_file(output_filename.c_str());
-	std::string		mystring;
+	std::string		mystring = "";
 	
 	if (original_file.is_open()){
 		while (getline(original_file, mystring))
@@ -37,7 +37,10 @@ void	read_and_treat_file(const std::string &original_filename,
 	else
 	{
 		std::cout << "Error: Could not open file." << '\n';
+		return ;
 	}
+	
+	return ;
 }
 
 bool	check_args(int argc, char **argv)

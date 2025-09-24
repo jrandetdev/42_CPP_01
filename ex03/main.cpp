@@ -2,19 +2,6 @@
 #include "HumanB.hpp"
 #include "Weapon.hpp"
 
-// a pointer contains the memory address of a variable and can be reassigned
-// a reference, on the other hand, is the address of a variable but is an allias.
-//a pointer can be reasigned wheread a reference is tied to its allias.
-// pointers offer multiple levels of indentation, a reference does not
-// there is no reference arithmetic.
-
-
-//Use reference in function parameters and return types.
-//Use pointers if pointer arithmetic or passing a NULL pointer is needed (a reference cannot be NULL)
-//Use references where you can, and pointers where you have to.
-//references are usefyk in a class's public interface
-//references typically appear on the skin of a class and pointers inside.
-
 int main(int argc, char **argv)
 {
 	(void)argc;
@@ -24,10 +11,9 @@ int main(int argc, char **argv)
 	{
 		Weapon	club = Weapon("crude spike club");
 		
-		//setweapon is not called here. HumanA takes a reference, meaning when the club changes
-		// bob's weapon also changes because he has an allias to the club variable. 
 		HumanA bob("Bob", club); 
 		bob.attack();
+
 		club.setType("some other type of club");
 		bob.attack();
 	}
@@ -39,8 +25,20 @@ int main(int argc, char **argv)
 		jim.setWeapon(club);
 		jim.attack();
 
-		//HumanB has a pointer to the weapon, meaning that when it is reassigned
-		//in the club's setType function, it also changes for the HumanB's weapon
+		std::cout << '\n';
+		club.setType("Some other type of club");
+		jim.attack();
+	}
+		std::cout << '\n';
+	//Test case with no weapon
+	{
+		std::cout << "CASE WHERE HE DOES NOT HAVE A WEAPON (nullptr)\n";
+		Weapon club = Weapon("crude spiked club");
+
+		HumanB	jim("Jim");
+		//jim.setWeapon(club);
+		jim.attack();
+
 		std::cout << '\n';
 		club.setType("Some other type of club");
 		jim.attack();

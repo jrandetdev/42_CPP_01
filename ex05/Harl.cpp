@@ -2,15 +2,6 @@
 
 Harl::Harl()
 {
-	function_ptr_array[0].f = &Harl::debug;
-	function_ptr_array[0].level = std::string("debug");
-	function_ptr_array[1].f = &Harl::info;
-	function_ptr_array[1].level = std::string("info");
-	function_ptr_array[2].f = &Harl::warning;
-	function_ptr_array[2].level = std::string("warning");
-	function_ptr_array[3].f = &Harl::error;
-	function_ptr_array[3].level = std::string("error");
-
 	std::cout << "Harl: default constructor called" << std::endl;
 }
 
@@ -43,13 +34,19 @@ void	Harl::error()
 	std::cout << "This is unacceptable! I want to speak to the manager now.\n";
 }
 
-void	Harl::complain(std::string level)
+void	Harl::complain(std::string level) 
 {
+	void (Harl::*f[4])(void) = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
+	std::string level_options[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	
 	int i = 0;
 	while (i < 4)
 	{
-		if (function_ptr_array[i].level == level)
-			(this->*function_ptr_array[i].f)();
+		if (level_options[i] == level)
+		{
+			(this->*f[i])();
+			return ;
+		}
 		i++;
 	}
 }

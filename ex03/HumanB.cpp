@@ -1,10 +1,8 @@
 #include "HumanB.hpp"
 
 //HumanB 
-HumanB::HumanB(std::string desiredName)
+HumanB::HumanB(std::string desiredName) : name(desiredName) ,hisWeapon(NULL)
 {
-	this->name = desiredName;
-	this->hisWeapon = NULL;
 	std::cout << "HumanB constructor called and is now called " << this->name << std::endl;
 }
 
